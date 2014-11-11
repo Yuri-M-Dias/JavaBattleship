@@ -39,7 +39,5 @@ public class BattleShip {
             }
             System.out.println("");
         }
-        
-        System.out.println("Oi");
     }
 }
