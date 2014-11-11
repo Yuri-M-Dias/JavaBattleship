@@ -63,7 +63,7 @@ public class BattleShip {
         	if(opcao == 9) break;
         }
         s.close();
-        System.out.println("-----Program end------");
+        System.out.println("-----Program end?------");
     }
     
     private static void printMenu(){
