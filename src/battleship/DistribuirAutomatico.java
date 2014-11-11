@@ -3,9 +3,9 @@ package battleship;
 public class DistribuirAutomatico implements TipoDistribuicao {
 
 	@Override
-	public boolean distribuir(String posicao, PosicaoTabuleiroDecorator navio) {
-		// TODO Auto-generated method stub
-		return false;
+	public PosicaoTabuleiro[][] distribuir(PosicaoTabuleiro[][] tabuleiro, Posicoes posicao, String tipoNavio) {
+		PosicaoTabuleiro[][] tabuleiroNovo = tabuleiro;
+		return tabuleiroNovo;
 	}
 
 }

@@ -1,5 +1,5 @@
 package battleship;
 
 public interface TipoDistribuicao {
-	public boolean distribuir(String posicao, PosicaoTabuleiroDecorator navio);
+	public PosicaoTabuleiro[][] distribuir(PosicaoTabuleiro[][] tabuleiro, Posicoes posicao, String tipoNavio);
 }

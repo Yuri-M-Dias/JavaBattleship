@@ -17,7 +17,7 @@ public class Agua implements PosicaoTabuleiro{
 
     @Override
     public String getDescription() {
-        return "A";
+        return "~";
     }
     
 }

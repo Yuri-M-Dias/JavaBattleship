@@ -22,10 +22,11 @@ public class Jogador {
                 this.tabuleiro[i][j] = new Agua();
             }
         }
+        this.distribuicao = new DistribuirManual();
     }
     
-    public void distribui(String posicao, PosicaoTabuleiroDecorator navio){
-    	this.distribuicao.distribuir(posicao, navio);
+    public void distribui(Posicoes posicao, String tipoNavio){
+    	this.tabuleiro = this.distribuicao.distribuir(this.tabuleiro, posicao, tipoNavio);
     }
     
     public void atira(String posi){
@@ -34,6 +35,15 @@ public class Jogador {
     
     public PosicaoTabuleiro[][] getTabuleiro(){
         return tabuleiro;
+    }
+    
+    public void mostraTabuleiro(){
+    	for (int i = 0; i < this.tamanhoTabuleiro; i++) {
+            for (int j = 0; j < this.tamanhoTabuleiro; j++) {
+                System.out.print(this.tabuleiro[i][j].getDescription()+" ");
+            }
+            System.out.println("");
+        }
     }
     
 }
