@@ -10,21 +10,27 @@ package battleship;
  */
 public class Jogador {
     
-    private PosicaoTabuleiro tabuleiro[][] = new PosicaoTabuleiro[9][9];
+    private PosicaoTabuleiro tabuleiro[][];
+    private int tamanhoTabuleiro;
+    private TipoDistribuicao distribuicao;
     
-    public void Jogador(){
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+    public Jogador(int tamanhoTabuleiro){
+    	this.tamanhoTabuleiro = tamanhoTabuleiro;
+    	this.tabuleiro = new PosicaoTabuleiro[this.tamanhoTabuleiro][this.tamanhoTabuleiro];
+        for (int i = 0; i < this.tamanhoTabuleiro; i++) {
+            for (int j = 0; j < this.tamanhoTabuleiro; j++) {
                 this.tabuleiro[i][j] = new Agua();
             }
         }
     }
     
-    private void distribuiAuto(){}
+    public void distribui(String posicao, PosicaoTabuleiroDecorator navio){
+    	this.distribuicao.distribuir(posicao, navio);
+    }
     
-    private void distribuiManual(){}
-    
-    private void atira(int posX, int posY){}
+    public void atira(String posi){
+    	
+    }
     
     public PosicaoTabuleiro[][] getTabuleiro(){
         return tabuleiro;
