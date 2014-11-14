@@ -10,13 +10,13 @@ package battleship;
  */
 public class Jogador {
     
-    private PosicaoTabuleiro tabuleiro[][];
+    private Tabuleiro tabuleiro[][];
     private int tamanhoTabuleiro;
     private TipoDistribuicao distribuicao;
     
     public Jogador(int tamanhoTabuleiro){
     	this.tamanhoTabuleiro = tamanhoTabuleiro;
-    	this.tabuleiro = new PosicaoTabuleiro[this.tamanhoTabuleiro][this.tamanhoTabuleiro];
+    	this.tabuleiro = new Tabuleiro[this.tamanhoTabuleiro][this.tamanhoTabuleiro];
         for (int i = 0; i < this.tamanhoTabuleiro; i++) {
             for (int j = 0; j < this.tamanhoTabuleiro; j++) {
                 this.tabuleiro[i][j] = new Agua();
@@ -33,14 +33,14 @@ public class Jogador {
     	this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaDestruidora(this.tabuleiro[posicao.getX()][posicao.getY()]);
     }
     
-    public PosicaoTabuleiro[][] getTabuleiro(){
+    public Tabuleiro[][] getTabuleiro(){
         return tabuleiro;
     }
     
     public void mostraTabuleiro(){
-    	for (int i = 0; i < this.tamanhoTabuleiro; i++) {
-            for (int j = 0; j < this.tamanhoTabuleiro; j++) {
-                System.out.print(this.tabuleiro[i][j].mostrar()+" ");
+    	for (Tabuleiro d1tabu[]: this.tabuleiro) {
+            for (Tabuleiro tabu: d1tabu) {
+                System.out.print(tabu.mostrar()+" ");
             }
             System.out.println("");
         }

@@ -11,7 +11,7 @@ public class DistribuirManual implements TipoDistribuicao {
 	}
 	
 	@Override
-	public PosicaoTabuleiro[][] distribuir(PosicaoTabuleiro[][] tabuleiro, Posicoes posicao, int tipoNavio) {
+	public Tabuleiro[][] distribuir(Tabuleiro[][] tabuleiro, Posicoes posicao, int tipoNavio) {
 		String name = tabuleiro[posicao.getX()][posicao.getY()].getClass().getName();
 		System.out.println(name);
 		switch(tipoNavio){

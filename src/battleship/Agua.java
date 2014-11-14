@@ -8,7 +8,7 @@ package battleship;
  *
  * @author alunoinf
  */
-public class Agua implements PosicaoTabuleiro{
+public class Agua implements Tabuleiro{
 
     @Override
     public String mostrar() {

@@ -8,10 +8,10 @@ package battleship;
  *
  * @author alunoinf
  */
-public abstract class PosicaoTabuleiroDecorator implements PosicaoTabuleiro{
-    protected PosicaoTabuleiro posicaoDecorada;
+public abstract class TabuleiroDecorator implements Tabuleiro{
+    protected Tabuleiro posicaoDecorada;
     
-    public PosicaoTabuleiroDecorator(PosicaoTabuleiro posicaoDecorada){
+    public TabuleiroDecorator(Tabuleiro posicaoDecorada){
         this.posicaoDecorada = posicaoDecorada;
     }
     

@@ -8,7 +8,7 @@ package battleship;
  *
  * @author root
  */
-public class Navio implements PosicaoTabuleiro {
+public class Navio implements Tabuleiro {
 
     @Override
     public String mostrar() {

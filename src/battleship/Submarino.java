@@ -8,8 +8,8 @@ package battleship;
  *
  * @author alunoinf
  */
-public class Submarino extends PosicaoTabuleiroDecorator{
-    public Submarino (PosicaoTabuleiro posicaoDecorada){
+public class Submarino extends TabuleiroDecorator{
+    public Submarino (Tabuleiro posicaoDecorada){
         super(posicaoDecorada);
     }
     

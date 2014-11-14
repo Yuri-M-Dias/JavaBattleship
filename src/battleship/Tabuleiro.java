@@ -6,8 +6,9 @@ package battleship;
 
 /**
  *
- * @author root
+ * @author alunoinf
  */
-public class Tabuleiro {
-    
+public interface Tabuleiro {
+    public String mostrar();
+    public int getType();
 }

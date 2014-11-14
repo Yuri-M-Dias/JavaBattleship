@@ -8,10 +8,10 @@ package battleship;
  *
  * @author Yuri
  */
-public class BombaDestruidora extends PosicaoTabuleiroDecorator{
+public class BombaDestruidora extends TabuleiroDecorator{
 	
 	String estado = "";
-    public BombaDestruidora (PosicaoTabuleiro posicaoDecorada){
+    public BombaDestruidora (Tabuleiro posicaoDecorada){
         super(posicaoDecorada);
         atirar();
     }

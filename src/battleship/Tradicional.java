@@ -43,14 +43,14 @@ public class Tradicional implements TipoJogo{
 	}
 
 	@Override
-	public void facaTurno() {
-		// TODO Auto-generated method stub
+	public void mostraTabuleiro(int jogador) {
+		this.jogadores[jogador].mostraTabuleiro();
 		
 	}
 
 	@Override
-	public void mostraTabuleiro(int jogador) {
-		this.jogadores[jogador].mostraTabuleiro();
+	public void facaTurno() {
+		
 		
 	}
 }
