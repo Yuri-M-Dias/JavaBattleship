@@ -16,12 +16,12 @@ public abstract class PosicaoTabuleiroDecorator implements PosicaoTabuleiro{
     }
     
     @Override
-    public void mostrar(){
-        
+    public String mostrar(){
+        return posicaoDecorada.mostrar();
     }
     
     @Override
-    public String getDescription(){
-        return posicaoDecorada.getDescription();
+    public int getType(){
+        return posicaoDecorada.getType();
     }
 }

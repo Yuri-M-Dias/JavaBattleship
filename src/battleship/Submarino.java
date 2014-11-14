@@ -14,12 +14,12 @@ public class Submarino extends PosicaoTabuleiroDecorator{
     }
     
     @Override
-    public void mostrar(){
-        
+    public String mostrar(){
+    	return "S";
     }
     
     @Override
-    public String getDescription(){
-        return "S";
+    public int getType(){
+        return 1;
     }
 }

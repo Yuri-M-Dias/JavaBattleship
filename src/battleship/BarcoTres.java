@@ -14,12 +14,12 @@ public class BarcoTres extends PosicaoTabuleiroDecorator{
     }
     
     @Override
-    public void mostrar(){
-        
+    public String mostrar(){
+        return "3";
     }
     
     @Override
-    public String getDescription(){
-        return "3";
+    public int getType(){
+        return 3;
     }
 }

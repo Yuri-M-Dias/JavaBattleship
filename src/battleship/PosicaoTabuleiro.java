@@ -9,6 +9,6 @@ package battleship;
  * @author alunoinf
  */
 public interface PosicaoTabuleiro {
-    public void mostrar();
-    public String getDescription();
+    public String mostrar();
+    public int getType();
 }

@@ -5,8 +5,8 @@ package battleship;
  *	An object to ease the positioning communication between classes.
  */
 public class Posicoes {
-	public int x;
-	public int y;
+	private int x;
+	private int y;
 	
 	public Posicoes(int x, int y){
 		this.x = x;

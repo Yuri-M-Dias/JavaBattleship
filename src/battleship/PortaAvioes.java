@@ -14,12 +14,12 @@ public class PortaAvioes extends PosicaoTabuleiroDecorator{
     }
     
     @Override
-    public void mostrar(){
-        
+    public String mostrar(){
+    	return "T";
     }
     
     @Override
-    public String getDescription(){
-        return "P";
+    public int getType(){
+        return 5;
     }
 }

@@ -21,6 +21,9 @@ public class BattleShip {
         Scanner s = new Scanner(System.in);
         TipoJogo jogo = null;
         Posicoes positionHelper = new Posicoes(0, 0);
+        int jogador = 0;
+        String posicao = "";
+        int tipoNavio = 0;
         while(true){
         	printMenu();
         	try{
@@ -34,15 +37,23 @@ public class BattleShip {
 					break;
 				case 2:
 					System.out.println("Entre com o numero do jogador(0 ou 1):");
-					int jogador = s.nextInt();
+					jogador = s.nextInt();
 					System.out.println("Entre com a posicao:");
-					String posi = s.next();
-					positionHelper.setX(Integer.parseInt((posi.split(",",2))[0]));
-					positionHelper.setX(Integer.parseInt((posi.split(",",2))[1]));
+					posicao = s.next();
+					positionHelper = separarString(posicao);
 					System.out.println("Entre com o tipo da peça:");
-					String tipoNavio = s.next();
+					tipoNavio = s.nextInt();
 					jogo.distribui(jogador, positionHelper, tipoNavio);
 					System.out.println("Distribuição feita!");
+					jogo.mostraTabuleiro(jogador);
+					break;
+				case 3:
+					System.out.println("Entre com o numero do jogador que será atacado(0 ou 1):");
+					jogador = s.nextInt();
+					System.out.println("Entre com a posicao:");
+					posicao = s.next();
+					positionHelper = separarString(posicao);
+					jogo.atira(jogador, positionHelper);
 					jogo.mostraTabuleiro(jogador);
 					break;
 				case 4:
@@ -73,5 +84,12 @@ public class BattleShip {
     	System.out.println("[3]-Atira em uma posição");
     	System.out.println("[4]-Mostra os tabuleiros");
     	System.out.println("[9]-Sair");
+    }
+    
+    private static Posicoes separarString(String posicao){
+    	Posicoes positionHelper = new Posicoes(0, 0);
+    	positionHelper.setX(Integer.parseInt((posicao.split(",",2))[0]));
+		positionHelper.setY(Integer.parseInt((posicao.split(",",2))[1]));
+		return positionHelper;
     }
 }

@@ -11,11 +11,12 @@ package battleship;
 public class Navio implements PosicaoTabuleiro {
 
     @Override
-    public void mostrar() {
+    public String mostrar() {
+    	return "N";
     }
 
     @Override
-    public String getDescription() {
-        return "N";
+    public int getType() {
+        return 7;
     }
 }

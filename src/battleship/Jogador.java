@@ -25,12 +25,12 @@ public class Jogador {
         this.distribuicao = new DistribuirManual();
     }
     
-    public void distribui(Posicoes posicao, String tipoNavio){
+    public void distribui(Posicoes posicao, int tipoNavio){
     	this.tabuleiro = this.distribuicao.distribuir(this.tabuleiro, posicao, tipoNavio);
     }
     
-    public void atira(String posi){
-    	
+    public void atira(Posicoes posicao){
+    	this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaDestruidora(this.tabuleiro[posicao.getX()][posicao.getY()]);
     }
     
     public PosicaoTabuleiro[][] getTabuleiro(){
@@ -40,7 +40,7 @@ public class Jogador {
     public void mostraTabuleiro(){
     	for (int i = 0; i < this.tamanhoTabuleiro; i++) {
             for (int j = 0; j < this.tamanhoTabuleiro; j++) {
-                System.out.print(this.tabuleiro[i][j].getDescription()+" ");
+                System.out.print(this.tabuleiro[i][j].mostrar()+" ");
             }
             System.out.println("");
         }

@@ -11,13 +11,13 @@ package battleship;
 public class Agua implements PosicaoTabuleiro{
 
     @Override
-    public void mostrar() {
-      
+    public String mostrar() {
+    	return "~";
     }
 
     @Override
-    public String getDescription() {
-        return "~";
+    public int getType() {
+        return 0;
     }
     
 }

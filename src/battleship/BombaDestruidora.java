@@ -9,19 +9,28 @@ package battleship;
  * @author Yuri
  */
 public class BombaDestruidora extends PosicaoTabuleiroDecorator{
+	
+	String estado = "";
     public BombaDestruidora (PosicaoTabuleiro posicaoDecorada){
         super(posicaoDecorada);
+        atirar();
     }
     
     @Override
-    public void mostrar(){
-        
+    public String mostrar(){
+        return estado;
     }
     
     @Override
-    public String getDescription(){
-        return super.getDescription()+" BD";
+    public int getType(){
+        return super.getType();
     }
     
-    public void atirar(){}
+    public void atirar(){
+    	if(super.getType() > 0 && super.getType() < 6){
+    		estado = "X";
+    	}else{
+    		estado = "*";
+    	}
+    }
 }

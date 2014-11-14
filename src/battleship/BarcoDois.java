@@ -14,12 +14,12 @@ public class BarcoDois extends PosicaoTabuleiroDecorator{
     }
     
     @Override
-    public void mostrar(){
-        
+    public String mostrar(){
+    	return "2";
     }
     
     @Override
-    public String getDescription(){
-        return "2";
+    public int getType(){
+        return 2;
     }
 }

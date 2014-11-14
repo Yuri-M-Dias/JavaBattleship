@@ -9,7 +9,7 @@ public class PQQD implements TipoJogo {
 	}
 
 	@Override
-	public void atira(String pos) {
+	public void atira(int jogador, Posicoes posicao) {
 		// TODO Auto-generated method stub
 
 	}
@@ -21,7 +21,7 @@ public class PQQD implements TipoJogo {
 	}
 
 	@Override
-	public void distribui(int jogador, Posicoes posicao, String tipoNavio) {
+	public void distribui(int jogador, Posicoes posicao, int tipoNavio) {
 		// TODO Auto-generated method stub
 		
 	}
