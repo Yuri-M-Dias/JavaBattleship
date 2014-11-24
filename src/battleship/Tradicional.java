@@ -73,13 +73,18 @@ public class Tradicional implements TipoJogo{
 	@Override
 	public boolean getGameOver() {
 		if (this.jogadores[0].haNaviosRestantes()) {
-			System.out.println("player 0 won!");
+			System.out.println("player 1 won!");
 			return true;
 		} else if (this.jogadores[1].haNaviosRestantes()) {
-			System.out.println("player 1 won!");
+			System.out.println("player 0 won!");
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Tabuleiro[][] getTabuleiro(int jogador) {
+		return this.jogadores[jogador].getTabuleiro();
 	}
 	
 }

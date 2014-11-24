@@ -25,7 +25,6 @@ public class Jogador {
 				this.tabuleiro[i][j].setVisibility(true);
 			}
 		}
-		this.distribuicao = new DistribuirManual();
 		this.preenchido = false;
 		this.posicoesRestantes = 0;
 	}

@@ -11,5 +11,6 @@ public interface TipoJogo {
     public boolean getPreenchido(int jogador);
     public int getTamanhoTabuleiro();
     public boolean getGameOver();
+    public Tabuleiro[][] getTabuleiro(int jogador);
 	
 }

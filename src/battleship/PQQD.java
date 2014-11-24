@@ -51,5 +51,10 @@ public class PQQD implements TipoJogo {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public Tabuleiro[][] getTabuleiro(int jogador) {
+		return null;
+	}
 
 }
