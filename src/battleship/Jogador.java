@@ -15,6 +15,9 @@ public class Jogador {
 	private TipoDistribuicao distribuicao;
 	private boolean preenchido;
 	private int posicoesRestantes;
+	private int turnosFeitos;
+	private int quantidadeDestruidora;
+	private int quantidadeSinalizadora;
 
 	public Jogador(int tamanhoTabuleiro) {
 		this.tamanhoTabuleiro = tamanhoTabuleiro;
@@ -27,6 +30,9 @@ public class Jogador {
 		}
 		this.preenchido = false;
 		this.posicoesRestantes = 0;
+		this.turnosFeitos = 0;
+		this.quantidadeDestruidora = 20;
+		this.quantidadeSinalizadora = 20;
 	}
 
 	public void distribui(Posicoes posicao, int tipoNavio, String direcao,
@@ -41,13 +47,13 @@ public class Jogador {
 				tipoNavio, direcao, tamanhoTabuleiro);
 	}
 
-	public boolean atira(Posicoes posicao) {
+	public boolean atira(Posicoes posicao, boolean sinalizadora) {
 		if (this.posicoesRestantes > 0) {
-			this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaDestruidora(
-					this.tabuleiro[posicao.getX()][posicao.getY()]);
-			if (this.tabuleiro[posicao.getX()][posicao.getY()].mostrar()
-					.equals("X")) {
-				this.posicoesRestantes--;
+			this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaDestruidora(this.tabuleiro[posicao.getX()][posicao.getY()]);
+			if (this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("X")
+				|| this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("*")) {
+				this.turnosFeitos++;
+				if (this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("X")) this.posicoesRestantes--;
 				return true;
 			}
 		}
@@ -58,7 +64,7 @@ public class Jogador {
 		return tabuleiro;
 	}
 
-	public void mostraTabuleiro() {
+	public void printTabuleiro() {
 		for (Tabuleiro d1tabu[] : this.tabuleiro) {
 			for (Tabuleiro tabu : d1tabu) {
 				System.out.print(tabu.mostrar() + " ");
@@ -70,24 +76,28 @@ public class Jogador {
 	public void setPreenchido() {
 		this.preenchido = true;
 		calculaNumeroCasasComBarcos();
-		System.out.println("Isso:"+this.posicoesRestantes);
+		System.out.println("Casas com navios:" + this.posicoesRestantes);
 		setInvisivel();
-	}
-	
-	private void setInvisivel(){
-		for (int i = 0; i < this.tamanhoTabuleiro; i++) {
-			for (int j = 0; j < this.tamanhoTabuleiro; j++) {
-				this.tabuleiro[i][j].setVisibility(false);
-			}
-		}
 	}
 
 	public boolean getPreenchido() {
 		return this.preenchido;
 	}
 
-	public boolean haNaviosRestantes() {
+	public boolean getAcabaramNavios() {
 		return this.posicoesRestantes <= 0;
+	}
+
+	public int getNumeroTurnos() {
+		return this.turnosFeitos;
+	}
+
+	private void setInvisivel() {
+		for (int i = 0; i < this.tamanhoTabuleiro; i++) {
+			for (int j = 0; j < this.tamanhoTabuleiro; j++) {
+				this.tabuleiro[i][j].setVisibility(false);
+			}
+		}
 	}
 
 	private void calculaNumeroCasasComBarcos() {

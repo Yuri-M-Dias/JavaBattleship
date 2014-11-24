@@ -90,7 +90,7 @@ public class DistribuirManual implements TipoDistribuicao {
 		if (posicao.getY() - tipoNavio < -1) {
 			return false;
 		}
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < tipoNavio; i++) {
 			if ((tabuleiro[posicao.getX()][posicao.getY() - i].getType()) != 0) {
 				return false;
 			}

@@ -27,7 +27,6 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	public Tabuleiro[][] distribuir(Tabuleiro[][] tabuleiro, Posicoes posicao,
 			int tipoNavio, String direcao, int tamanhoTabuleiro) {
 		Random aleatorio = new Random();
-
 		controle = 0;
 
 		do {
@@ -135,7 +134,7 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 		if (posicao.getY() - tipoNavio < -1) {
 			return false;
 		}
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < tipoNavio; i++) {
 			if ((tabuleiro[posicao.getX()][posicao.getY() - i].getType()) != 0) {
 				return false;
 			}
