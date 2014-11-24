@@ -4,6 +4,8 @@
  */
 package battleship;
 
+import java.util.ArrayList;
+
 /**
  * 
  * @author root
@@ -14,12 +16,10 @@ public class Jogador {
 	private int tamanhoTabuleiro;
 	private TipoDistribuicao distribuicao;
 	private boolean preenchido;
-	private int posicoesRestantes;
 	private int turnosFeitos;
-	private int quantidadeDestruidora;
-	private int quantidadeSinalizadora;
+	ArrayList<String> bombas;
 
-	public Jogador(int tamanhoTabuleiro) {
+	public Jogador(int tamanhoTabuleiro, int quantidadeBombas) {
 		this.tamanhoTabuleiro = tamanhoTabuleiro;
 		this.tabuleiro = new Tabuleiro[this.tamanhoTabuleiro][this.tamanhoTabuleiro];
 		for (int i = 0; i < this.tamanhoTabuleiro; i++) {
@@ -29,10 +29,12 @@ public class Jogador {
 			}
 		}
 		this.preenchido = false;
-		this.posicoesRestantes = 0;
 		this.turnosFeitos = 0;
-		this.quantidadeDestruidora = 20;
-		this.quantidadeSinalizadora = 20;
+		this.bombas = new ArrayList<String>();
+		for (int i = 0; i < quantidadeBombas; i++) {
+			this.bombas.add("destruidora");
+			this.bombas.add("reveladora");
+		}
 	}
 
 	public void distribui(Posicoes posicao, int tipoNavio, String direcao,
@@ -47,13 +49,22 @@ public class Jogador {
 				tipoNavio, direcao, tamanhoTabuleiro);
 	}
 
-	public boolean atira(Posicoes posicao, boolean sinalizadora) {
-		if (this.posicoesRestantes > 0) {
-			this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaDestruidora(this.tabuleiro[posicao.getX()][posicao.getY()]);
-			if (this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("X")
-				|| this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("*")) {
+	public boolean atira(Posicoes posicao, boolean reveladora) {
+		if (!getAcabaramNavios()){
+			if (!this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("X")
+					&& !this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("*")) {
+				if (reveladora) {
+					if(this.bombas.remove("reveladora"))
+						this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaReveladora(this.tabuleiro[posicao.getX()][posicao.getY()]);
+					else
+						return false;
+				}else{
+					if (this.bombas.remove("destruidora"))
+						this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaDestruidora(this.tabuleiro[posicao.getX()][posicao.getY()]);
+					else
+						return false;
+				}
 				this.turnosFeitos++;
-				if (this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("X")) this.posicoesRestantes--;
 				return true;
 			}
 		}
@@ -75,8 +86,6 @@ public class Jogador {
 
 	public void setPreenchido() {
 		this.preenchido = true;
-		calculaNumeroCasasComBarcos();
-		System.out.println("Casas com navios:" + this.posicoesRestantes);
 		setInvisivel();
 	}
 
@@ -85,7 +94,26 @@ public class Jogador {
 	}
 
 	public boolean getAcabaramNavios() {
-		return this.posicoesRestantes <= 0;
+		int restantes = 0;
+		for (Tabuleiro d1tabu[] : this.tabuleiro) {
+			for (Tabuleiro tabu : d1tabu) {
+				if (tabu.getType() != 0 && !tabu.mostrar().equals("X"))
+					restantes++;
+			}
+		}
+		return restantes == 0;
+	}
+
+	public boolean getAcabaramBombas(boolean destruidora) {
+		int qtdDestruidora = 0, qtdReveladora = 0;
+		for (String type : bombas) {
+			if(type.equals("destruidora")) qtdDestruidora++;
+			if(type.equals("reveladora")) qtdReveladora++;
+		}
+		if (destruidora) {
+			return qtdDestruidora == 0;
+		}
+		return qtdReveladora == 0;
 	}
 
 	public int getNumeroTurnos() {
@@ -103,8 +131,8 @@ public class Jogador {
 	private void calculaNumeroCasasComBarcos() {
 		for (Tabuleiro d1tabu[] : this.tabuleiro) {
 			for (Tabuleiro tabu : d1tabu) {
-				if (tabu.getType() != 0)
-					this.posicoesRestantes++;
+				//if (tabu.getType() != 0)
+					//this.posicoesRestantes++;
 			}
 		}
 	}

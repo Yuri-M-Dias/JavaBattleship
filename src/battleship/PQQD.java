@@ -2,23 +2,23 @@ package battleship;
 
 public class PQQD implements TipoJogo {
 	private int numberPlayers;
-    private Jogador[] jogadores = new Jogador[2];
-    private int tamanhoTabuleiro;
-    private int winnerPlayer;
+	private Jogador[] jogadores = new Jogador[2];
+	private int tamanhoTabuleiro;
+	private int winnerPlayer;
 
-	public PQQD(int numberPlayers, int tamanhoTabuleiro){
-        this.numberPlayers = numberPlayers;
-        this.tamanhoTabuleiro = tamanhoTabuleiro;
-        criaJogadores();
-        this.winnerPlayer = 9;
-    }
-    
-    @Override
-    public void criaJogadores(){
-        for(int i = 0; i <= this.numberPlayers-1; i++){
-            this.jogadores[i] = new Jogador(this.tamanhoTabuleiro);
-        }
-    }
+	public PQQD(int numberPlayers, int tamanhoTabuleiro) {
+		this.numberPlayers = numberPlayers;
+		this.tamanhoTabuleiro = tamanhoTabuleiro;
+		criaJogadores();
+		this.winnerPlayer = 9;
+	}
+
+	@Override
+	public void criaJogadores() {
+		for (int i = 0; i <= this.numberPlayers - 1; i++) {
+			this.jogadores[i] = new Jogador(this.tamanhoTabuleiro, 10);
+		}
+	}
 
 	@Override
 	public boolean atira(int jogador, Posicoes posicao, boolean sinalizadora) {
@@ -26,8 +26,10 @@ public class PQQD implements TipoJogo {
 	}
 
 	@Override
-	public void distribui(int jogador, Posicoes posicao, int tipoNavio, String direcao, int tamanhoTabuleiro, int tipoDistribuicao) {
-		this.jogadores[jogador].distribui(posicao, tipoNavio,direcao, tamanhoTabuleiro, tipoDistribuicao);
+	public void distribui(int jogador, Posicoes posicao, int tipoNavio,
+			String direcao, int tamanhoTabuleiro, int tipoDistribuicao) {
+		this.jogadores[jogador].distribui(posicao, tipoNavio, direcao,
+				tamanhoTabuleiro, tipoDistribuicao);
 		printTabuleiro(jogador);
 	}
 
@@ -40,31 +42,39 @@ public class PQQD implements TipoJogo {
 	public int getWinnerNumber() {
 		return this.winnerPlayer;
 	}
-	
+
 	@Override
-	public void setPreenchido(int jogador){
+	public void setPreenchido(int jogador) {
 		this.jogadores[jogador].setPreenchido();
 	}
-	
+
 	@Override
-	public boolean getPreenchido(int jogador){
-		 return this.jogadores[jogador].getPreenchido();
-	 }
+	public boolean getPreenchido(int jogador) {
+		return this.jogadores[jogador].getPreenchido();
+	}
+
 	@Override
-	public int getTamanhoTabuleiro(){
+	public int getTamanhoTabuleiro() {
 		return this.tamanhoTabuleiro;
 	}
 
 	@Override
 	public boolean isGameOver() {
-		if (this.jogadores[0].getAcabaramNavios()) {
-			this.winnerPlayer = 0;
-			return false;
-		} else if (this.jogadores[1].getAcabaramNavios()) {
-			this.winnerPlayer = 1;
-			return false;
+		for (int i = 0; i < this.numberPlayers; i++) {
+			if (this.jogadores[i].getAcabaramBombas(true)||this.jogadores[i].getAcabaramBombas(false)) {
+				this.winnerPlayer = (i == 1)? 0 : 1;
+				System.out.println("bomb test"+ this.winnerPlayer);
+				return true;
+			}
 		}
-		return true;
+		for (int i = 0; i < this.numberPlayers; i++) {
+			if (this.jogadores[i].getAcabaramNavios()) {
+				this.winnerPlayer = (i == 1)? 0 : 1;
+				System.out.println("ship test"+ this.winnerPlayer);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override

@@ -6,10 +6,4 @@ public class BombaReveladora extends TabuleiroDecorator {
 		super(posicaoDecorada);
 		super.setVisibility(true);
 	}
-
-	@Override
-	public String mostrar() {
-		return super.mostrar();
-	}
-
 }

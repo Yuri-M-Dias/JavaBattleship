@@ -24,7 +24,7 @@ public class Tradicional implements TipoJogo{
     @Override
     public void criaJogadores(){
         for(int i = 0; i <= this.numberPlayers-1; i++){
-            this.jogadores[i] = new Jogador(this.tamanhoTabuleiro);
+            this.jogadores[i] = new Jogador(this.tamanhoTabuleiro, this.tamanhoTabuleiro^2);
         }
     }
 
@@ -62,17 +62,18 @@ public class Tradicional implements TipoJogo{
 	public int getTamanhoTabuleiro(){
 		return this.tamanhoTabuleiro;
 	}
-
+	
 	@Override
 	public boolean isGameOver() {
-		if (this.jogadores[0].getAcabaramNavios()) {
-			this.winnerPlayer = 0;
-			return false;
-		} else if (this.jogadores[1].getAcabaramNavios()) {
-			this.winnerPlayer = 1;
-			return false;
+		for (int i = 0; i < this.numberPlayers; i++) {
+			System.out.println(this.jogadores[i].getAcabaramNavios());
+			if (this.jogadores[i].getAcabaramNavios()) {
+				this.winnerPlayer = (i == 1)? 0 : 1;
+				System.out.println("ship test"+ this.winnerPlayer);
+				return true;
+			}
 		}
-		return true;
+		return false;
 	}
 
 	@Override

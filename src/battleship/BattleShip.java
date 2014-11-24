@@ -23,8 +23,8 @@ public class BattleShip {
 		s = new Scanner(System.in);
 		Posicoes positionHelper = new Posicoes(0, 0);
 		int tamanhoTabuleiro = 0, jogador = 0, tipoJogo = 0, numeroJogadores = 2;
-		String nomeJogo = "", nova = "";
-		//Random myGenerator = new Random();
+		String nomeJogo = "", posicao = "";
+		// Random myGenerator = new Random();
 		try {
 			System.out.println("[1]-Criando novo jogo...");
 			System.out.println("Entre com o tamanho do tabuleiro:");
@@ -43,28 +43,38 @@ public class BattleShip {
 
 			System.out.println("[2]-Distribuindo barcos no tabuleiro....");
 			for (int i = 0; i < numeroJogadores; i++) {
-				System.out.println("Distribuindo para o jogador"+i+":");
+				System.out.println("Distribuindo para o jogador" + i + ":");
 				realizaDistribuicao(i, tamanhoTabuleiro);
 			}
-			
+
 			System.out.println("[3]-Começo do jogo, tiros:");
 			int winnerPlayer = jogo.getWinnerNumber();
-			while(winnerPlayer > 1){
+			while (winnerPlayer > numeroJogadores) {
 				winnerPlayer = jogo.getWinnerNumber();
 				for (int i = 0; i < numeroJogadores; i++) {
-					//jogo.printTabuleiro(i);
-					// System.out.println("Entre com a posicao:");
-					// posicao = s.next();
-					nova = new Random().nextInt(tamanhoTabuleiro) + "," + new Random().nextInt(tamanhoTabuleiro);
-					System.out.println("Jogador "+i+", atirando em: "+nova+" No seu próprio tabuleiro!");
-					positionHelper = separarString(nova);
-					if(tipoJogo == 0)
-						jogo.atira(i, positionHelper, false);
-					else
-						jogo.atira(i, positionHelper, new Random().nextBoolean());
-					//jogo.printTabuleiro(i);
-					if(jogo.isGameOver()){
-						break;
+					boolean atirou = false;
+					while (!atirou) {
+						//jogo.printTabuleiro(i);
+						//System.out.println("Entre com a posicao:");
+						// posicao = s.next();
+						posicao = new Random().nextInt(tamanhoTabuleiro) + ","
+								+ new Random().nextInt(tamanhoTabuleiro);
+						boolean sinalizadora = new Random().nextBoolean();
+						System.out.println("Jogador " + i + ", atirando em: "
+								+ posicao + " com " + sinalizadora
+								+ " no seu próprio tabuleiro!");
+						positionHelper = separarString(posicao);
+						atirou = jogo.atira(i, positionHelper, sinalizadora);
+						//jogo.printTabuleiro(i);
+						//System.out.println("<<>>");
+						if (jogo.isGameOver()) {
+							break;
+						}
+						try {
+							Thread.sleep(30);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 				winnerPlayer = jogo.getWinnerNumber();
@@ -72,23 +82,16 @@ public class BattleShip {
 			jogo.printTabuleiro(0);
 			System.out.println("<<<LINE>>>>");
 			jogo.printTabuleiro(1);
-			System.out.println("THE GAME IS OVAH!");
-			System.out.println("Com "+jogo.getNumTurnos(0)+" turnos pro jogador 0...");
-			System.out.println("Com "+jogo.getNumTurnos(1)+" turnos pro jogador 1...");
+			System.out.println("THE GAME IS OVAH! Winner is:" + winnerPlayer);
+			System.out.println("Com " + jogo.getNumTurnos(0)
+					+ " turnos pro jogador 0...");
+			System.out.println("Com " + jogo.getNumTurnos(1)
+					+ " turnos pro jogador 1...");
 			System.out.println("Saindo....");
 		} catch (InputMismatchException e) {
 			System.out.println("Opcao inválida!");
 		}
 		s.close();
-	}
-
-	private static void printMenu() {
-		System.out.println("Entre com um número:");
-		System.out.println("[1]-Criar novo jogo/tabuleiro");
-
-		System.out.println("[3]-Atirar em uma posição");
-		System.out.println("[4]-Mostrar os tabuleiros");
-		System.out.println("[9]-Sair");
 	}
 
 	private static Posicoes separarString(String posicao) {
@@ -116,8 +119,8 @@ public class BattleShip {
 			return 0;
 		}
 	}
-	
-	private static void realizaDistribuicao(int jogador, int tamanhoTabuleiro){
+
+	private static void realizaDistribuicao(int jogador, int tamanhoTabuleiro) {
 		ArrayList<String> naviosNames = new ArrayList<String>();
 		naviosNames.add("Submarino");
 		naviosNames.add("Barco de Dois");
@@ -128,13 +131,16 @@ public class BattleShip {
 		String posicao = "", direcao = "";
 		int tipoNavio = 0, tipoDist;
 
-		System.out.println("Escolha o modo de distribuição dos barcos (0 para automático e 1 para manual):");
+		System.out
+				.println("Escolha o modo de distribuição dos barcos (0 para automático e 1 para manual):");
 		tipoDist = s.nextInt();
 		if (tipoDist == 0) {
-			jogo.distribui(jogador, positionHelper, tipoNavio, direcao, tamanhoTabuleiro, tipoDist);
+			jogo.distribui(jogador, positionHelper, tipoNavio, direcao,
+					tamanhoTabuleiro, tipoDist);
 		} else {
 			for (int i = 0; i < naviosNames.size(); i++) {
-				System.out.println("Entre com a posicao do " + naviosNames.get(i));
+				System.out.println("Entre com a posicao do "
+						+ naviosNames.get(i));
 				posicao = s.next();
 				positionHelper = separarString(posicao);
 				tipoNavio = escolheTipoNavio(naviosNames.get(i));
@@ -144,7 +150,8 @@ public class BattleShip {
 				} else {
 					direcao = "atual";
 				}
-				jogo.distribui(jogador, positionHelper, tipoNavio, direcao, tamanhoTabuleiro, tipoDist);
+				jogo.distribui(jogador, positionHelper, tipoNavio, direcao,
+						tamanhoTabuleiro, tipoDist);
 			}
 		}
 		jogo.setPreenchido(jogador);

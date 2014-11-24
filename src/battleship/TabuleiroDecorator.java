@@ -32,6 +32,7 @@ public abstract class TabuleiroDecorator implements Tabuleiro{
     
     @Override
 	public void setVisibility(boolean flag) {
+    	posicaoDecorada.setVisibility(true);
     	this.visible = flag;
 	}
 }
