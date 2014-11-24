@@ -9,8 +9,9 @@ public class PQQD implements TipoJogo {
 	}
 
 	@Override
-	public void atira(int jogador, Posicoes posicao) {
+	public boolean atira(int jogador, Posicoes posicao) {
 		// TODO Auto-generated method stub
+		return false;
 
 	}
 
@@ -21,7 +22,7 @@ public class PQQD implements TipoJogo {
 	}
 
 	@Override
-	public void distribui(int jogador, Posicoes posicao, int tipoNavio) {
+	public void distribui(int jogador, Posicoes posicao, int tipoNavio, String direcao, int TamanhoTabuleiro, int tipoDistribuicao) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -30,6 +31,25 @@ public class PQQD implements TipoJogo {
 	public void mostraTabuleiro(int jogador) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void setPreenchido(int jogador){
+		
+	}
+	@Override
+	public boolean getPreenchido(int jogador){
+		 return false;
+	 }
+	@Override
+	public int getTamanhoTabuleiro(){
+		return 0;
+	}
+
+	@Override
+	public boolean getGameOver() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

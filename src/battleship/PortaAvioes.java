@@ -5,21 +5,25 @@
 package battleship;
 
 /**
- *
+ * 
  * @author alunoinf
  */
-public class PortaAvioes extends TabuleiroDecorator{
-    public PortaAvioes (Tabuleiro posicaoDecorada){
-        super(posicaoDecorada);
-    }
-    
-    @Override
-    public String mostrar(){
-    	return "T";
-    }
-    
-    @Override
-    public int getType(){
-        return 5;
-    }
+public class PortaAvioes extends TabuleiroDecorator {
+	public PortaAvioes(Tabuleiro posicaoDecorada) {
+		super(posicaoDecorada);
+	}
+
+	@Override
+	public String mostrar() {
+		if (super.visible) {
+			return getType()+"";
+		}
+		return "-";
+	}
+
+	@Override
+	public int getType() {
+		return 5;
+	}
+
 }

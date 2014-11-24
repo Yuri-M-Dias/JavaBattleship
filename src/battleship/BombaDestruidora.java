@@ -10,20 +10,17 @@ package battleship;
  */
 public class BombaDestruidora extends TabuleiroDecorator{
 	
-	String estado = "";
+	private String estado = "";
+	
     public BombaDestruidora (Tabuleiro posicaoDecorada){
         super(posicaoDecorada);
+        super.setVisibility(true);
         atirar();
     }
     
     @Override
     public String mostrar(){
         return estado;
-    }
-    
-    @Override
-    public int getType(){
-        return super.getType();
     }
     
     public void atirar(){

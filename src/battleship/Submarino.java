@@ -15,11 +15,15 @@ public class Submarino extends TabuleiroDecorator{
     
     @Override
     public String mostrar(){
-    	return "S";
+    	if (super.visible) {
+    		return getType()+"";
+		}
+    	return "-";
     }
     
     @Override
     public int getType(){
         return 1;
     }
+
 }

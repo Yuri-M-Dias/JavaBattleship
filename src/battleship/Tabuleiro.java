@@ -11,4 +11,5 @@ package battleship;
 public interface Tabuleiro {
     public String mostrar();
     public int getType();
+    public void setVisibility(boolean flag);
 }

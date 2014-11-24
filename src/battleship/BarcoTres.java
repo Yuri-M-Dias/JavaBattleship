@@ -15,11 +15,15 @@ public class BarcoTres extends TabuleiroDecorator{
     
     @Override
     public String mostrar(){
-        return "3";
+    	if (super.visible) {
+    		return getType()+"";
+		}
+    	return "-";
     }
     
     @Override
     public int getType(){
         return 3;
     }
+    
 }

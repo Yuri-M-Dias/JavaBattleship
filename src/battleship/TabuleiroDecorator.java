@@ -10,18 +10,28 @@ package battleship;
  */
 public abstract class TabuleiroDecorator implements Tabuleiro{
     protected Tabuleiro posicaoDecorada;
+    protected boolean visible;
     
     public TabuleiroDecorator(Tabuleiro posicaoDecorada){
         this.posicaoDecorada = posicaoDecorada;
+        this.visible = true;
     }
     
     @Override
     public String mostrar(){
-        return posicaoDecorada.mostrar();
+    	if (this.visible) {
+    		return posicaoDecorada.mostrar();
+		}
+    	return "-";
     }
     
     @Override
     public int getType(){
         return posicaoDecorada.getType();
     }
+    
+    @Override
+	public void setVisibility(boolean flag) {
+    	this.visible = flag;
+	}
 }

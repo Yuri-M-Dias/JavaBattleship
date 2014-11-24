@@ -3,48 +3,126 @@ package battleship;
 import java.util.ArrayList;
 
 public class DistribuirManual implements TipoDistribuicao {
-	
-	private ArrayList<String> naviosNames;
-	
-	public DistribuirManual(){
-		
+
+	public DistribuirManual() {
 	}
-	
+
 	@Override
-	public Tabuleiro[][] distribuir(Tabuleiro[][] tabuleiro, Posicoes posicao, int tipoNavio) {
-		String name = tabuleiro[posicao.getX()][posicao.getY()].getClass().getName();
-		System.out.println(name);
-		switch(tipoNavio){
-			case 1://Submarino
-				tabuleiro[posicao.getX()][posicao.getY()] = new Submarino(tabuleiro[posicao.getX()][posicao.getY()]);
-				break;
-			case 2://BarcoDois
-				for (int i = 0; i < 2; i++) {
-					tabuleiro[posicao.getX()][posicao.getY()+i] = new BarcoDois(tabuleiro[posicao.getX()][posicao.getY()+i]);
+	public Tabuleiro[][] distribuir(Tabuleiro[][] tabuleiro, Posicoes posicao,
+			int tipoNavio, String direcao, int tamanhoTabuleiro) {
+
+		NavioFactory factory = new NavioFactory();
+
+		if (direcao.equals("direita")) {
+			if (verificarDireita(tabuleiro, posicao, tipoNavio,
+					tamanhoTabuleiro) && (verificaPosicao(tabuleiro, posicao))) {
+				for (int i = 0; i < tipoNavio; i++) {
+					tabuleiro[posicao.getX()][posicao.getY() + i] = factory
+							.criaNavio(tabuleiro, posicao, tipoNavio);
 				}
-				break;
-			case 3://BarcoTres
-				for (int i = 0; i < 3; i++) {
-					tabuleiro[posicao.getX()][posicao.getY()+i] = new BarcoTres(tabuleiro[posicao.getX()][posicao.getY()+i]);
+			}
+
+		} else if (direcao.equals("esquerda")) {
+			if (verificarEsquerda(tabuleiro, posicao, tipoNavio,
+					tamanhoTabuleiro) && (verificaPosicao(tabuleiro, posicao))) {
+				for (int i = 0; i < tipoNavio; i++) {
+					tabuleiro[posicao.getX()][posicao.getY() - i] = factory
+							.criaNavio(tabuleiro, posicao, tipoNavio);
 				}
-				break;
-			case 4://BarcoQuatro
-				for (int i = 0; i < 4; i++) {
-					tabuleiro[posicao.getX()][posicao.getY()+i] = new BarcoQuatro(tabuleiro[posicao.getX()][posicao.getY()+i]);
+			}
+
+		} else if (direcao.equals("baixo")) {
+			if (verificarBaixo(tabuleiro, posicao, tipoNavio, tamanhoTabuleiro)
+					&& (verificaPosicao(tabuleiro, posicao))) {
+				for (int i = 0; i < tipoNavio; i++) {
+					tabuleiro[posicao.getX() + i][posicao.getY()] = factory
+							.criaNavio(tabuleiro, posicao, tipoNavio);
 				}
-				break;
-			case 5://PortaAvioes
-				for (int i = 0; i < 5; i++) {
-					tabuleiro[posicao.getX()][posicao.getY()+i] = new PortaAvioes(tabuleiro[posicao.getX()][posicao.getY()+i]);
+			}
+
+		} else if (direcao.equals("cima")) {
+			if (verificarCima(tabuleiro, posicao, tipoNavio, tamanhoTabuleiro)
+					&& (verificaPosicao(tabuleiro, posicao))) {
+				for (int i = 0; i < tipoNavio; i++) {
+					tabuleiro[posicao.getX() - i][posicao.getY()] = factory
+							.criaNavio(tabuleiro, posicao, tipoNavio);
 				}
-				break;
-			default:
-				tabuleiro[posicao.getX()][posicao.getY()] = new Submarino(tabuleiro[posicao.getX()][posicao.getY()]);
-				break;
+			}
+
+		} else if (direcao.equals("atual")) {
+			if ((verificaPosicao(tabuleiro, posicao))) {
+				tabuleiro[posicao.getX()][posicao.getY()] = factory.criaNavio(
+						tabuleiro, posicao, tipoNavio);
+			}
 		}
-		name = tabuleiro[posicao.getX()][posicao.getY()].getClass().getName();
-		System.out.println(name);
 		return tabuleiro;
 	}
 
+	// verifica se ja existe embarcacao na posicao escolhida - usada para
+	// colocar submarino
+	public boolean verificaPosicao(Tabuleiro[][] tabuleiro, Posicoes posicao) {
+
+		if ((tabuleiro[posicao.getX()][posicao.getY()].getType()) != 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	// metodo que verifica se existe possibilidade de colocar pecas a direta
+	public boolean verificarDireita(Tabuleiro[][] tabuleiro, Posicoes posicao,
+			int tipoNavio, int tamanhoTabuleiro) {
+
+		if (posicao.getY() > tamanhoTabuleiro - tipoNavio) {
+			return false;
+		}
+		for (int i = 0; i < tipoNavio; i++) {
+			if (((tabuleiro[posicao.getX()][posicao.getY() + i].getType()) != 0)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// metodo que verifica se existe possibilidade de colocar pecas a esquerda
+	public boolean verificarEsquerda(Tabuleiro[][] tabuleiro, Posicoes posicao,
+			int tipoNavio, int tamanhoTabuleiro) {
+		if (posicao.getY() - tipoNavio < -1) {
+			return false;
+		}
+		for (int i = 0; i < 2; i++) {
+			if ((tabuleiro[posicao.getX()][posicao.getY() - i].getType()) != 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// metodo que verifica se existe possibilidade de colocar pecas para cima
+	public boolean verificarCima(Tabuleiro[][] tabuleiro, Posicoes posicao,
+			int tipoNavio, int tamanhoTabuleiro) {
+		if (posicao.getX() - tipoNavio < -1) {
+			return false;
+		}
+		for (int i = 0; i < tipoNavio; i++) {
+			if ((tabuleiro[posicao.getX() - i][posicao.getY()].getType()) != 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// metodo que verifica se existe possibilidade de colocar pecas para baixo
+	public boolean verificarBaixo(Tabuleiro[][] tabuleiro, Posicoes posicao,
+			int tipoNavio, int tamanhoTabuleiro) {
+		if (posicao.getX() > tamanhoTabuleiro - tipoNavio) {
+			return false;
+		}
+		for (int i = 0; i < tipoNavio; i++) {
+			if ((tabuleiro[posicao.getX() + i][posicao.getY()].getType()) != 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

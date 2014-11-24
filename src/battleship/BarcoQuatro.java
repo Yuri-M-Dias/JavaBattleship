@@ -15,7 +15,10 @@ public class BarcoQuatro extends TabuleiroDecorator{
     
     @Override
     public String mostrar(){
-    	return "4";
+    	if (super.visible) {
+    		return getType()+"";
+		}
+    	return "-";
     }
     
     @Override
