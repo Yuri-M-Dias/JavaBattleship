@@ -50,7 +50,6 @@ public class BattleShip {
 			System.out.println("[3]-Começo do jogo, tiros:");
 			int winnerPlayer = jogo.getWinnerNumber();
 			while (winnerPlayer > numeroJogadores) {
-				winnerPlayer = jogo.getWinnerNumber();
 				for (int i = 0; i < numeroJogadores; i++) {
 					boolean atirou = false;
 					while (!atirou) {
@@ -60,21 +59,19 @@ public class BattleShip {
 						posicao = new Random().nextInt(tamanhoTabuleiro) + ","
 								+ new Random().nextInt(tamanhoTabuleiro);
 						boolean sinalizadora = new Random().nextBoolean();
-						System.out.println("Jogador " + i + ", atirando em: "
-								+ posicao + " com " + sinalizadora
-								+ " no seu próprio tabuleiro!");
+						//System.out.println("Jogador " + i + ", atirando em: "+ posicao + " com " + sinalizadora+ " no seu próprio tabuleiro!");
 						positionHelper = separarString(posicao);
 						atirou = jogo.atira(i, positionHelper, sinalizadora);
 						//jogo.printTabuleiro(i);
-						//System.out.println("<<>>");
+						//System.out.println(atirou);
 						if (jogo.isGameOver()) {
 							break;
 						}
-						try {
-							Thread.sleep(30);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+//						try {
+//							Thread.sleep(30);
+//						} catch (InterruptedException e) {
+//							e.printStackTrace();
+//						}
 					}
 				}
 				winnerPlayer = jogo.getWinnerNumber();
