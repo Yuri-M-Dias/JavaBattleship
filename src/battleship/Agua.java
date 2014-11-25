@@ -6,7 +6,7 @@ package battleship;
 
 /**
  *
- * @author alunoinf
+ * @author Lucas Henrique, Yuri Matheus
  */
 public class Agua implements Tabuleiro{
 
