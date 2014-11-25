@@ -16,7 +16,7 @@ public class PQQD implements TipoJogo {
 	@Override
 	public void criaJogadores() {
 		for (int i = 0; i <= this.numberPlayers - 1; i++) {
-			this.jogadores[i] = new Jogador(this.tamanhoTabuleiro, 100);
+			this.jogadores[i] = new Jogador(this.tamanhoTabuleiro, 10);
 		}
 	}
 
