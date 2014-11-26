@@ -36,7 +36,6 @@ public class PortaAvioes extends TabuleiroDecorator {
 	 * 
 	 * @return int - valor referente ao objeto PortaAvioes (5)
 	 */
-
 	@Override
 	public int getType() {
 		return 5;
