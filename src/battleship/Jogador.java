@@ -16,6 +16,7 @@ public class Jogador {
 	private int tamanhoTabuleiro;
 	private TipoDistribuicao distribuicao;
 	private boolean preenchido;
+	private boolean gameEnded;
 	private int turnosFeitos;
 	ArrayList<String> bombas;
 
@@ -29,6 +30,7 @@ public class Jogador {
 			}
 		}
 		this.preenchido = false;
+		this.gameEnded = false;
 		this.turnosFeitos = 0;
 		this.bombas = new ArrayList<String>();
 		for (int i = 0; i < quantidadeBombas; i++) {
@@ -37,20 +39,25 @@ public class Jogador {
 		}
 	}
 
-	public void distribui(Posicoes posicao, int tipoNavio, String direcao,
+	public boolean distribui(Posicoes posicao, int tipoNavio, String direcao,
 			int tamanhoTabuleiro, int tipoDistribuicao) {
+		if (gameEnded) 
+			return false;
 		if (tipoDistribuicao == 0) {
 			this.distribuicao = new DistribuirAutomatico();
 		} else {
 			this.distribuicao = new DistribuirManual();
 		}
 
-		this.tabuleiro = this.distribuicao.distribuir(this.tabuleiro, posicao,
-				tipoNavio, direcao, tamanhoTabuleiro);
+		Tabuleiro[][] novoTabuleiro = this.distribuicao.distribuir(this.tabuleiro, posicao, tipoNavio, direcao, tamanhoTabuleiro);
+		if(this.tabuleiro == novoTabuleiro)//Verifica se os objetos são iguais.
+			return false;
+		this.tabuleiro = novoTabuleiro;//Se não são, atualiza o tabuleiro e conseguiu distribuir.
+		return true;
 	}
 
 	public boolean atira(Posicoes posicao, boolean reveladora) {
-		if (!getAcabaramNavios()){
+		if (!gameEnded){
 			if (!this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("X")
 					&& !this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("*")) {
 				if (reveladora) {
@@ -119,20 +126,15 @@ public class Jogador {
 	public int getNumeroTurnos() {
 		return this.turnosFeitos;
 	}
+	
+	public void updateFimDoJogo(){
+		this.gameEnded = true;
+	}
 
 	private void setInvisivel() {
 		for (int i = 0; i < this.tamanhoTabuleiro; i++) {
 			for (int j = 0; j < this.tamanhoTabuleiro; j++) {
 				this.tabuleiro[i][j].setVisibility(false);
-			}
-		}
-	}
-
-	private void calculaNumeroCasasComBarcos() {
-		for (Tabuleiro d1tabu[] : this.tabuleiro) {
-			for (Tabuleiro tabu : d1tabu) {
-				//if (tabu.getType() != 0)
-					//this.posicoesRestantes++;
 			}
 		}
 	}

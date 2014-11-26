@@ -9,14 +9,14 @@ public class PQQD implements TipoJogo {
 	public PQQD(int numberPlayers, int tamanhoTabuleiro) {
 		this.numberPlayers = numberPlayers;
 		this.tamanhoTabuleiro = tamanhoTabuleiro;
-		criaJogadores();
+		registraJogadores();
 		this.winnerPlayer = 9;
 	}
 
 	@Override
-	public void criaJogadores() {
+	public void registraJogadores() {
 		for (int i = 0; i <= this.numberPlayers - 1; i++) {
-			this.jogadores[i] = new Jogador(this.tamanhoTabuleiro, 10);
+			this.jogadores[i] = new Jogador(this.tamanhoTabuleiro, 100);
 		}
 	}
 
@@ -26,11 +26,14 @@ public class PQQD implements TipoJogo {
 	}
 
 	@Override
-	public void distribui(int jogador, Posicoes posicao, int tipoNavio,
+	public boolean distribui(int jogador, Posicoes posicao, int tipoNavio,
 			String direcao, int tamanhoTabuleiro, int tipoDistribuicao) {
-		this.jogadores[jogador].distribui(posicao, tipoNavio, direcao,
-				tamanhoTabuleiro, tipoDistribuicao);
-		printTabuleiro(jogador);
+		if (this.jogadores[jogador].distribui(posicao, tipoNavio, direcao,
+				tamanhoTabuleiro, tipoDistribuicao)) {
+			printTabuleiro(jogador);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -61,16 +64,17 @@ public class PQQD implements TipoJogo {
 	@Override
 	public boolean isGameOver() {
 		for (int i = 0; i < this.numberPlayers; i++) {
-			if (this.jogadores[i].getAcabaramBombas(true)||this.jogadores[i].getAcabaramBombas(false)) {
-				this.winnerPlayer = (i == 1)? 0 : 1;
-				System.out.println("bomb test"+ this.winnerPlayer);
+			if (this.jogadores[i].getAcabaramBombas(true)
+					|| this.jogadores[i].getAcabaramBombas(false)) {
+				this.winnerPlayer = (i == 1) ? 0 : 1;
+				System.out.println("bomb test" + this.winnerPlayer);
 				return true;
 			}
 		}
 		for (int i = 0; i < this.numberPlayers; i++) {
 			if (this.jogadores[i].getAcabaramNavios()) {
-				this.winnerPlayer = (i == 1)? 0 : 1;
-				System.out.println("ship test"+ this.winnerPlayer);
+				this.winnerPlayer = (i == 1) ? 0 : 1;
+				System.out.println("ship test" + this.winnerPlayer);
 				return true;
 			}
 		}
@@ -85,6 +89,13 @@ public class PQQD implements TipoJogo {
 	@Override
 	public int getNumTurnos(int jogador) {
 		return this.jogadores[jogador].getNumeroTurnos();
+	}
+
+	@Override
+	public void notificaJogadores(){
+		for (int i = 0; i < this.numberPlayers; i++) {
+			this.jogadores[i].updateFimDoJogo();
+		}
 	}
 
 }
