@@ -1,4 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/battleship/BattleShip.java=UTF-8
 encoding//src/battleship/Jogador.java=UTF-8
+encoding//src/battleship/Navio.java=UTF-8
+encoding//src/battleship/NavioFactory.java=UTF-8
+encoding//src/battleship/Posicoes.java=UTF-8
+encoding//src/battleship/Submarino.java=UTF-8
+encoding//src/battleship/Tabuleiro.java=UTF-8
+encoding//src/battleship/TipoDistribuicao.java=UTF-8
 encoding//src/battleship/Tradicional.java=UTF-8
