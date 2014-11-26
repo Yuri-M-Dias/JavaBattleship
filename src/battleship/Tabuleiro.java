@@ -5,11 +5,14 @@
 package battleship;
 
 /**
- *
- * @author alunoinf
+ * Interface que declara metodos para manipulação do Tabuleiro.
+ * 
+ * @author Lucas Henrique, Yuri Matheus
  */
 public interface Tabuleiro {
-    public String mostrar();
-    public int getType();
-    public void setVisibility(boolean flag);
+	public String mostrar();
+
+	public int getType();
+
+	public void setVisibility(boolean flag);
 }
