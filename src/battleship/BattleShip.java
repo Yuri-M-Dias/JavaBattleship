@@ -70,11 +70,6 @@ public class BattleShip {
 						if (jogo.isGameOver()) {
 							break;
 						}
-						try {
-							Thread.sleep(30);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
 					}
 				}
 				winnerPlayer = jogo.getWinnerNumber();
