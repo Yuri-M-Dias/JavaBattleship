@@ -16,11 +16,11 @@ public class BarcoDois extends TabuleiroDecorator {
 	}
 
 	/**
-	 * Metodo para retorno do símbolo relacionado ao objeto Barco Dois em
-	 * determinado instante do jogo, caso a posicao esteja visível ao jogador
-	 * será mostrado "2" senão será mostrado "-"
+	 * Metodo para retorno do súŠbolo relacionado ao objeto Barco Dois em
+	 * determinado instante do jogo, caso a posicao esteja visú“el ao jogador
+	 * ser?mostrado "2" senão ser?mostrado "-"
 	 * 
-	 * @return String - símbolo do objeto.
+	 * @return String - súŠbolo do objeto.
 	 */
 
 	@Override
