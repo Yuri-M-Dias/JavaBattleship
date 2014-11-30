@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Classe que abriga métodos e atributos responsáveis pela distribuição
- * automática de embarcações.
+ * Classe que abriga mé¨odos e atributos responsç–±eis pela distribuiéˆ¬o
+ * automç–¸ica de embarcaé‹es.
  * 
  * @author Lucas Henrique, Yuri Matheus
  */
@@ -26,7 +26,7 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 		naviosNames.add("Barco de Tres");
 		naviosNames.add("Barco de Tres");
 		naviosNames.add("Barco de Quatro");
-		naviosNames.add("Porta-Aviões");
+		naviosNames.add("Porta-Aviî‘s");
 	}
 
 	/**
@@ -41,9 +41,9 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	 * @param tipoNavio
 	 *            int - tipo de navio a ser inserido
 	 * @param direcao
-	 *            String - direcao em que se deseja colocar a embarcação
+	 *            String - direcao em que se deseja colocar a embarcaéˆ¬o
 	 * @param tamanhoTabuleiro
-	 *            int - tamanho do tabuleiro que será preenchido
+	 *            int - tamanho do tabuleiro que serï¿½ preenchido
 	 * @return Tabuleiro[][] - retorna tabuleiro preenchido
 	 */
 
@@ -68,8 +68,8 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	}
 
 	/**
-	 * Método que verifica a possibilidade de inserção de embarcações em posicão
-	 * passada como parametro, caso seja possível a inserção o mesmo a faz.
+	 * Mé¨odo que verifica a possibilidade de inseréˆ¬o de embarcaé‹es em posicç¸Š
+	 * passada como parametro, caso seja posså’©el a inseréˆ¬o o mesmo a faz.
 	 * 
 	 * @param tabuleiro
 	 *            Tabuleiro[][] - tabuleiro para ser preenchido
@@ -78,9 +78,9 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	 * @param tipoNavio
 	 *            int - tipo de navio a ser inserido
 	 * @param direcao
-	 *            String - direcao em que se deseja colocar a embarcação
+	 *            String - direcao em que se deseja colocar a embarcaéˆ¬o
 	 * @param tamanhoTabuleiro
-	 *            int - tamanho do tabuleiro que será preenchido
+	 *            int - tamanho do tabuleiro que serï¿½ preenchido
 	 * @return Tabuleiro[][] - retorna tabuleiro preenchido
 	 */
 	public Tabuleiro[][] distribuirAuto(Tabuleiro[][] tabuleiro,
@@ -141,13 +141,13 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	}
 
 	/**
-	 * Método que verifica se existe alguma embarção em determinada posição
+	 * Mé¨odo que verifica se existe alguma embaréˆ¬o em determinada posiéˆ¬o
 	 * 
 	 * @param tabuleiro
 	 *            Tabuleiro[][] - tabuleiro para ser verificado
 	 * @param posicao
 	 *            Posicao - Objeto do tipo posicao
-	 * @return boolean - retorna se a posição está disponível ou não
+	 * @return boolean - retorna se a posiéˆ¬o estï¿½ disponå’©el ou nç¸Š
 	 */
 	public boolean verificaPosicao(Tabuleiro[][] tabuleiro, Posicoes posicao) {
 
@@ -159,8 +159,8 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	}
 
 	/**
-	 * Método que verifica se existe a possibilidade de colocar embarcações a
-	 * direita da posição inicial e se as posições escolhidas estão dentro dos
+	 * Mé¨odo que verifica se existe a possibilidade de colocar embarcaé‹es a
+	 * direita da posiéˆ¬o inicial e se as posié‹es escolhidas estç¸Š dentro dos
 	 * limites do tabuleiro.
 	 * 
 	 * @param tabuleiro
@@ -170,8 +170,8 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	 * @param tipoNavio
 	 *            int - tipo de navio a ser inserido
 	 * @param tamanhoTabuleiro
-	 *            int - tamanho do tabuleiro que será preenchido
-	 * @return boolean - retorna se a posição está disponível ou não
+	 *            int - tamanho do tabuleiro que serï¿½ preenchido
+	 * @return boolean - retorna se a posiéˆ¬o estï¿½ disponå’©el ou nç¸Š
 	 */
 	public boolean verificarDireita(Tabuleiro[][] tabuleiro, Posicoes posicao,
 			int tipoNavio, int tamanhoTabuleiro) {
@@ -188,8 +188,8 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	}
 
 	/**
-	 * Método que verifica se existe a possibilidade de colocar embarcações a
-	 * esquerda da posição inicial e se as posições escolhidas estão dentro dos
+	 * Mé¨odo que verifica se existe a possibilidade de colocar embarcaé‹es a
+	 * esquerda da posiéˆ¬o inicial e se as posié‹es escolhidas estç¸Š dentro dos
 	 * limites do tabuleiro.
 	 * 
 	 * @param tabuleiro
@@ -199,8 +199,8 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	 * @param tipoNavio
 	 *            int - tipo de navio a ser inserido
 	 * @param tamanhoTabuleiro
-	 *            int - tamanho do tabuleiro que será preenchido
-	 * @return boolean - retorna se a posição está disponível ou não
+	 *            int - tamanho do tabuleiro que serï¿½ preenchido
+	 * @return boolean - retorna se a posiéˆ¬o estï¿½ disponå’©el ou nç¸Š
 	 */
 	public boolean verificarEsquerda(Tabuleiro[][] tabuleiro, Posicoes posicao,
 			int tipoNavio, int tamanhoTabuleiro) {
@@ -216,8 +216,8 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	}
 
 	/**
-	 * Método que verifica se existe a possibilidade de colocar embarcações
-	 * acima da posição inicial e se as posições escolhidas estão dentro dos
+	 * Mé¨odo que verifica se existe a possibilidade de colocar embarcaé‹es
+	 * acima da posiéˆ¬o inicial e se as posié‹es escolhidas estç¸Š dentro dos
 	 * limites do tabuleiro.
 	 * 
 	 * @param tabuleiro
@@ -227,8 +227,8 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	 * @param tipoNavio
 	 *            int - tipo de navio a ser inserido
 	 * @param tamanhoTabuleiro
-	 *            int - tamanho do tabuleiro que será preenchido
-	 * @return boolean - retorna se a posição está disponível ou não
+	 *            int - tamanho do tabuleiro que serï¿½ preenchido
+	 * @return boolean - retorna se a posiéˆ¬o estï¿½ disponå’©el ou nç¸Š
 	 */
 	public boolean verificarCima(Tabuleiro[][] tabuleiro, Posicoes posicao,
 			int tipoNavio, int tamanhoTabuleiro) {
@@ -244,8 +244,8 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	}
 
 	/**
-	 * Método que verifica se existe a possibilidade de colocar embarcações
-	 * abaixo da posição inicial e se as posições escolhidas estão dentro dos
+	 * Mé¨odo que verifica se existe a possibilidade de colocar embarcaé‹es
+	 * abaixo da posiéˆ¬o inicial e se as posié‹es escolhidas estç¸Š dentro dos
 	 * limites do tabuleiro.
 	 * 
 	 * @param tabuleiro
@@ -255,8 +255,8 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	 * @param tipoNavio
 	 *            int - tipo de navio a ser inserido
 	 * @param tamanhoTabuleiro
-	 *            int - tamanho do tabuleiro que será preenchido
-	 * @return boolean - retorna se a posição está disponível ou não
+	 *            int - tamanho do tabuleiro que serï¿½ preenchido
+	 * @return boolean - retorna se a posiéˆ¬o estï¿½ disponå’©el ou nç¸Š
 	 */
 	public boolean verificarBaixo(Tabuleiro[][] tabuleiro, Posicoes posicao,
 			int tipoNavio, int tamanhoTabuleiro) {
@@ -272,7 +272,7 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 	}
 
 	/**
-	 * Método que verifica através do nome do navio o número correspondente a
+	 * Mé¨odo que verifica atravé§¸ do nome do navio o nä¼¹ero correspondente a
 	 * cada navio.
 	 * 
 	 * @param navioName
@@ -289,7 +289,7 @@ public class DistribuirAutomatico implements TipoDistribuicao {
 			return 3;
 		case "Barco de Quatro":
 			return 4;
-		case "Porta-Aviões":
+		case "Porta-AviÃµes":
 			return 5;
 		default:
 			return 0;

@@ -5,6 +5,7 @@
 package battleship;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * 
@@ -41,7 +42,7 @@ public class Jogador {
 
 	public boolean distribui(Posicoes posicao, int tipoNavio, String direcao,
 			int tamanhoTabuleiro, int tipoDistribuicao) {
-		if (gameEnded) 
+		if (gameEnded)
 			return false;
 		if (tipoDistribuicao == 0) {
 			this.distribuicao = new DistribuirAutomatico();
@@ -49,25 +50,32 @@ public class Jogador {
 			this.distribuicao = new DistribuirManual();
 		}
 
-		Tabuleiro[][] novoTabuleiro = this.distribuicao.distribuir(this.tabuleiro, posicao, tipoNavio, direcao, tamanhoTabuleiro);
-		if(this.tabuleiro == novoTabuleiro)//Verifica se os objetos são iguais.
+		Tabuleiro[][] novoTabuleiro = this.distribuicao.distribuir(
+				this.tabuleiro, posicao, tipoNavio, direcao, tamanhoTabuleiro);
+		if (this.tabuleiro == novoTabuleiro)// Verifica se os objetos são
+											// iguais.
 			return false;
-		this.tabuleiro = novoTabuleiro;//Se não são, atualiza o tabuleiro e conseguiu distribuir.
+		this.tabuleiro = novoTabuleiro;// Se não são, atualiza o tabuleiro e
+										// conseguiu distribuir.
 		return true;
 	}
 
 	public boolean atira(Posicoes posicao, boolean reveladora) {
-		if (!gameEnded){
-			if (!this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("X")
-					&& !this.tabuleiro[posicao.getX()][posicao.getY()].mostrar().equals("*")) {
+		if (!gameEnded) {
+			if (!this.tabuleiro[posicao.getX()][posicao.getY()].mostrar()
+					.equals("X")
+					&& !this.tabuleiro[posicao.getX()][posicao.getY()]
+							.mostrar().equals("*")) {
 				if (reveladora) {
-					if(this.bombas.remove("reveladora"))
-						this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaReveladora(this.tabuleiro[posicao.getX()][posicao.getY()]);
+					if (this.bombas.remove("reveladora"))
+						this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaReveladora(
+								this.tabuleiro[posicao.getX()][posicao.getY()]);
 					else
 						return false;
-				}else{
+				} else {
 					if (this.bombas.remove("destruidora"))
-						this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaDestruidora(this.tabuleiro[posicao.getX()][posicao.getY()]);
+						this.tabuleiro[posicao.getX()][posicao.getY()] = new BombaDestruidora(
+								this.tabuleiro[posicao.getX()][posicao.getY()]);
 					else
 						return false;
 				}
@@ -83,8 +91,8 @@ public class Jogador {
 	}
 
 	public void printTabuleiro() {
-		for (Tabuleiro d1tabu[] : this.tabuleiro) {
-			for (Tabuleiro tabu : d1tabu) {
+		for (Tabuleiro tabuleiroDeUmaDimensao[] : this.tabuleiro) {
+			for (Tabuleiro tabu: tabuleiroDeUmaDimensao) {
 				System.out.print(tabu.mostrar() + " ");
 			}
 			System.out.println("");
@@ -102,20 +110,25 @@ public class Jogador {
 
 	public boolean getAcabaramNavios() {
 		int restantes = 0;
-		for (Tabuleiro d1tabu[] : this.tabuleiro) {
-			for (Tabuleiro tabu : d1tabu) {
-				if (tabu.getType() != 0 && !tabu.mostrar().equals("X"))
-					restantes++;
-			}
+		Iterator<Tabuleiro> tabuleiroIterator = new TabuleiroIterator(
+				this.tabuleiro, this.tamanhoTabuleiro);
+		while (tabuleiroIterator.hasNext()) {
+			Tabuleiro posicaoNoTabuleiro = tabuleiroIterator.next();
+			if (posicaoNoTabuleiro.getType() != 0
+					&& !posicaoNoTabuleiro.mostrar().equals("X"))
+				restantes++;
 		}
-		return restantes == 0;
+		return (restantes == 0);
 	}
 
 	public boolean getAcabaramBombas(boolean destruidora) {
 		int qtdDestruidora = 0, qtdReveladora = 0;
-		for (String type : bombas) {
-			if(type.equals("destruidora")) qtdDestruidora++;
-			if(type.equals("reveladora")) qtdReveladora++;
+		Iterator<String> iteratorBombas = this.bombas.iterator();
+		while (iteratorBombas.hasNext()) {
+			if (iteratorBombas.next().equals("destruidora"))
+				qtdDestruidora++;
+			if (iteratorBombas.next().equals("reveladora"))
+				qtdReveladora++;
 		}
 		if (destruidora) {
 			return qtdDestruidora == 0;
@@ -126,8 +139,8 @@ public class Jogador {
 	public int getNumeroTurnos() {
 		return this.turnosFeitos;
 	}
-	
-	public void updateFimDoJogo(){
+
+	public void updateFimDoJogo() {
 		this.gameEnded = true;
 	}
 

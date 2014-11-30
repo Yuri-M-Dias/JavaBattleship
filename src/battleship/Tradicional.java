@@ -46,6 +46,7 @@ public class Tradicional implements TipoJogo{
 
 	@Override
 	public void printTabuleiro(int jogador) {
+		System.out.println("Tabuleiro de "+ jogador);
 		this.jogadores[jogador].printTabuleiro();
 	}
 
